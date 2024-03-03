@@ -1,0 +1,86 @@
+@import url("https://fonts.googleapis.com/css2?family=Figtree&display=swap");
+
+* {
+	margin: 0;
+	padding: 0;
+	box-sizing: border-box;
+	font-family: "Figtree", sans-serif;
+}
+
+body {
+	display: grid;
+	place-content: center;
+	min-height: 100vh;
+	background: #000;
+}
+.container{
+	position: relative;
+	display: grid;
+	grid-template-columns: 1fr 1fr 1fr 1fr 1fr;
+	gap: 1em;
+	width: 800px;
+	height:500px;
+transition: all 400ms;
+}
+
+.box{
+	background: var(--img) center;
+	background-size: cover;
+	overflow: hidden;
+	transition: all 400ms;
+}
+ 
+.container:hover .box{
+	filter: grayscale();
+}
+
+.container:has(.box-1:hover){
+	grid-template-columns: 3fr 1fr 1fr 1fr 1fr;
+}
+.container:has(.box-2:hover){
+	grid-template-columns: 1fr 3fr 1fr 1fr 1fr;
+}
+.container:has(.box-3:hover){
+	grid-template-columns: 1fr 1fr 3fr 1fr 1fr;
+}
+.container:has(.box-4:hover){
+	grid-template-columns: 1fr 1fr 1fr 3fr 1fr;
+}
+.container:has(.box-5:hover){
+	grid-template-columns: 1fr 1fr 1fr 1fr 3fr;
+}
+
+.container .box:hover{
+
+	filter: none;
+	scale: 1.1;
+	border-radius: 15px;
+
+
+}
+
+.box:nth-child(even){
+	transform: translateY(-16px);
+	z-index: 10;
+}
+
+.box:nth-child(odd){
+	transform: translateY(16px);
+
+}
+
+.box::after{
+	content: attr(data-text);
+	position: absolute;
+	bottom: 10%;
+	left:40%;
+	background-color: #000;
+	color: aliceblue;
+	padding: 8px 25px;
+	transition: transform 0.5s;
+	transform: translateY(100px);
+}
+
+.box:hover:after{
+	transform: translateY(0px);
+}
